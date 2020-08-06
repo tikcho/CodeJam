@@ -1,0 +1,10 @@
+tests = int(input())
+for t in range(tests):
+    line = list(map(int, list(input())))
+    x = ''
+    for i in line:
+            x += '(' * i + str(i) + ')' * i
+    while ')(' in x:
+        x = x.replace(')(', '')
+    print("Case #{0}: {1}".format(t + 1, x))
+

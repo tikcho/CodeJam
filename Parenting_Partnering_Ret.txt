@@ -1,0 +1,36 @@
+import itertools
+
+
+def schedule(p, times):
+    for line in p:
+        c, j = [], []
+        for n in range(N):
+            s, e = times[n]
+            w = list(range(s, e))
+            if line[n] == 'C':
+                c += w
+            if line[n] == 'J':
+                j += w
+        C, J = set(c), set(j)
+        if len(C) == len(c) and len(J) == len(j):
+            return ''.join(line)
+    return None
+
+
+tests = int(input())
+for t in range(tests):
+    N = int(input())
+    times = []
+    for n in range(N):
+        inp = input().split()
+        S, E = int(inp[0]), int(inp[1])
+        times.append([S, E])
+
+    p = list(itertools.product('CJ', repeat=N))
+    x = int(len(p) / 2)
+    case = schedule(p[:x], times)
+    if case is None:
+        print("Case #{0}: IMPOSSIBLE".format(t + 1))
+    else:
+        print("Case #{0}: {1}".format(t + 1, case))
+
